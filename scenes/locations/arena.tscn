@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bq4hn27v33ftc"]
+
+[ext_resource type="Material" uid="uid://c2tfl6r3cuqyh" path="res://material/grass_patch.tres" id="1_5pqkj"]
+[ext_resource type="PackedScene" uid="uid://bv7g08j73l7ci" path="res://scenes/entities/player.tscn" id="2_5pqkj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5pqkj"]
+sky_top_color = Color(0.47383612, 0.5480621, 0.6471147, 1)
+sky_curve = 0.016322808
+sun_angle_max = 73.64
+sun_curve = 0.092335805
+
+[sub_resource type="Sky" id="Sky_5pqkj"]
+sky_material = SubResource("ProceduralSkyMaterial_5pqkj")
+
+[sub_resource type="Environment" id="Environment_v75v5"]
+background_mode = 2
+sky = SubResource("Sky_5pqkj")
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_y_scale = 0
+sdfgi_energy = 0.44
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.16123031, 0.20807861, 0.23824745, 1)
+fog_light_energy = 0.6
+fog_sun_scatter = 0.1
+fog_density = 0.1742
+fog_aerial_perspective = 0.075
+fog_sky_affect = 0.875
+fog_depth_curve = 0.13397172
+
+[sub_resource type="Gradient" id="Gradient_wl4x5"]
+offsets = PackedFloat32Array(0, 0.7164179, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.3432836, 0.3432836, 0.3432836, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e05a3"]
+gradient = SubResource("Gradient_wl4x5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e05a3"]
+albedo_color = Color(0.3277699, 0.13171151, 0.032347765, 1)
+rim_enabled = true
+rim_tint = 0.31
+rim_texture = SubResource("GradientTexture2D_e05a3")
+uv1_scale = Vector3(1.095, 1.095, 1.095)
+uv1_offset = Vector3(0, 0.025, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.1435342
+uv1_world_triplanar = true
+uv2_scale = Vector3(1.105, 1.105, 1.105)
+uv2_offset = Vector3(0.01, 0, 0)
+grow_amount = 0.352
+distance_fade_mode = 1
+distance_fade_max_distance = 5.75
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8v148"]
+height = 0.15447998
+radius = 0.8457031
+
+[node name="Arena" type="Node3D" unique_id=655215357]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=683437438]
+environment = SubResource("Environment_v75v5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1655791826]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1580648663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1861324e-05, 0.24347353, 0.004552841)
+material_override = ExtResource("1_5pqkj")
+operation = 1
+use_collision = true
+radius = 3.0
+height = 0.5
+sides = 60
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1406363871]
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, -3.999988, 0.36909854, 0.004552841)
+material_override = SubResource("StandardMaterial3D_e05a3")
+use_collision = true
+radius = 3.0
+height = 1.25
+sides = 60
+
+[node name="Player_Spawn" type="Area3D" parent="CSGCylinder3D2" unique_id=635012546]
+transform = Transform3D(2.985075, 0, 0, 0, 2.985075, 0, 0, 0, 2.985075, -3.4332275e-05, 1.7084028, -0.013590572)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCylinder3D2/Player_Spawn" unique_id=198746013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17868048, 0)
+shape = SubResource("CylinderShape3D_8v148")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=112393880]
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 4.000012, 0.36909854, 0.004552841)
+material_override = SubResource("StandardMaterial3D_e05a3")
+use_collision = true
+radius = 3.0
+height = 1.25
+sides = 60
+
+[node name="Enemy_Spawn" type="Area3D" parent="CSGCylinder3D3" unique_id=2087447792]
+transform = Transform3D(2.985075, 0, 0, 0, 2.985075, 0, 0, 0, 2.985075, -3.4332275e-05, 1.7084028, -0.013590572)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCylinder3D3/Enemy_Spawn" unique_id=1389884570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17868048, 0)
+shape = SubResource("CylinderShape3D_8v148")
+
+[node name="Player" parent="." unique_id=862382173 instance=ExtResource("2_5pqkj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12881804, 0.50230306, -1.6200776)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=212108396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0029299, 1.4262182)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1195970214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 1.047837, 1.4262182)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1180952164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 2.0520554, 1.4262182)
+use_collision = true
