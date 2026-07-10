@@ -3,15 +3,13 @@
 [sub_resource type="DrawableTexture2D" id="DrawableTexture2D_ug7gw"]
 
 [resource]
-albedo_color = Color(0.60784316, 0.87058824, 0.5411765, 1)
-rim_enabled = true
+albedo_color = Color(0.11091744, 0.1995849, 0.08797828, 1)
 rim = 0.51
 rim_tint = 0.31
 rim_texture = SubResource("DrawableTexture2D_ug7gw")
 uv1_scale = Vector3(1.095, 1.095, 1.095)
 uv1_offset = Vector3(0, 0.025, 0)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 2.1435342
+uv1_triplanar_sharpness = 1.0352585
 uv1_world_triplanar = true
 uv2_scale = Vector3(1.105, 1.105, 1.105)
 uv2_offset = Vector3(0.01, 0, 0)

@@ -700,6 +700,7 @@ shape = SubResource("CapsuleShape3D_8v148")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 500.0
@@ -714,12 +715,21 @@ size_flags_vertical = 4
 
 [node name="GRID" type="GridContainer" parent="GAPR" unique_id=168360492]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
-columns = 3
+columns = 5
 
 [node name="C1" type="ColorRect" parent="GAPR/GRID" unique_id=694665520]
 unique_name_in_owner = true
@@ -770,6 +780,102 @@ layout_mode = 2
 color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
 
 [node name="C9" type="ColorRect" parent="GAPR/GRID" unique_id=1697707239]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C10" type="ColorRect" parent="GAPR/GRID" unique_id=617711126]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C11" type="ColorRect" parent="GAPR/GRID" unique_id=445447425]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C12" type="ColorRect" parent="GAPR/GRID" unique_id=1984941080]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C13" type="ColorRect" parent="GAPR/GRID" unique_id=2123931423]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C14" type="ColorRect" parent="GAPR/GRID" unique_id=1393997000]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C15" type="ColorRect" parent="GAPR/GRID" unique_id=891367457]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C16" type="ColorRect" parent="GAPR/GRID" unique_id=1139786241]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C17" type="ColorRect" parent="GAPR/GRID" unique_id=1312729611]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C18" type="ColorRect" parent="GAPR/GRID" unique_id=613311874]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C19" type="ColorRect" parent="GAPR/GRID" unique_id=1269908940]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C20" type="ColorRect" parent="GAPR/GRID" unique_id=485180327]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C21" type="ColorRect" parent="GAPR/GRID" unique_id=1174594716]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C22" type="ColorRect" parent="GAPR/GRID" unique_id=1546452021]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C23" type="ColorRect" parent="GAPR/GRID" unique_id=239338631]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C24" type="ColorRect" parent="GAPR/GRID" unique_id=911191597]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="C25" type="ColorRect" parent="GAPR/GRID" unique_id=1825354977]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bq4hn27v33ftc"]
 
-[ext_resource type="Material" uid="uid://c2tfl6r3cuqyh" path="res://material/grass_patch.tres" id="1_5pqkj"]
+[ext_resource type="Material" uid="uid://c2tfl6r3cuqyh" path="res://material/organic/grass_patch.tres" id="1_5pqkj"]
 [ext_resource type="PackedScene" uid="uid://bv7g08j73l7ci" path="res://scenes/entities/player.tscn" id="2_5pqkj"]
+[ext_resource type="Shader" uid="uid://ceowy6jkyuqkb" path="res://material/shaders/test.gdshader" id="3_v75v5"]
+[ext_resource type="Shader" uid="uid://8l3bwjw65ckg" path="res://material/shaders/cosmic_cutlass.gdshader" id="4_fg444"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5pqkj"]
 sky_top_color = Color(0.47383612, 0.5480621, 0.6471147, 1)
@@ -15,10 +17,11 @@ sky_material = SubResource("ProceduralSkyMaterial_5pqkj")
 [sub_resource type="Environment" id="Environment_v75v5"]
 background_mode = 2
 sky = SubResource("Sky_5pqkj")
+ssao_enabled = true
 sdfgi_enabled = true
-sdfgi_use_occlusion = true
+sdfgi_min_cell_size = 1.4743164
 sdfgi_y_scale = 0
-sdfgi_energy = 0.44
+sdfgi_energy = 0.505
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
@@ -57,6 +60,44 @@ distance_fade_max_distance = 5.75
 height = 0.15447998
 radius = 0.8457031
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fg444"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v75v5"]
+noise = SubResource("FastNoiseLite_fg444")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd5fk"]
+render_priority = 0
+shader = ExtResource("3_v75v5")
+shader_parameter/noise = SubResource("NoiseTexture2D_v75v5")
+shader_parameter/waveHeight = 1.0
+shader_parameter/displacementScale = 0.75
+shader_parameter/normalMapIntensity = 1.0
+shader_parameter/waveTile = 0.5
+shader_parameter/waveSpeed = 0.5
+shader_parameter/waveA = true
+shader_parameter/waveB = true
+shader_parameter/waveC = true
+shader_parameter/waveD = true
+shader_parameter/contrast = 1.0
+shader_parameter/ridgePucker = 1.0
+shader_parameter/ambientIntensity = 1.0
+shader_parameter/fresnelIntensity = 0.1
+shader_parameter/colorIntensity = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7gbb4"]
+material = SubResource("ShaderMaterial_vd5fk")
+size = Vector2(20, 20)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v75v5"]
+render_priority = 0
+shader = ExtResource("4_fg444")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vd5fk"]
+material = SubResource("ShaderMaterial_v75v5")
+
 [node name="Arena" type="Node3D" unique_id=655215357]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=683437438]
@@ -67,7 +108,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1580648663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1861324e-05, 0.24347353, 0.004552841)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.1861324e-05, 0.24347353, 0.004552841)
 material_override = ExtResource("1_5pqkj")
 operation = 1
 use_collision = true
@@ -76,7 +117,7 @@ height = 0.5
 sides = 60
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1406363871]
-transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, -3.999988, 0.36909854, 0.004552841)
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, -6.999988, 0.36909854, 0.004552841)
 material_override = SubResource("StandardMaterial3D_e05a3")
 use_collision = true
 radius = 3.0
@@ -91,7 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17868048, 0)
 shape = SubResource("CylinderShape3D_8v148")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=112393880]
-transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 4.000012, 0.36909854, 0.004552841)
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 7.000012, 0.36909854, 0.004552841)
 material_override = SubResource("StandardMaterial3D_e05a3")
 use_collision = true
 radius = 3.0
@@ -106,16 +147,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17868048, 0)
 shape = SubResource("CylinderShape3D_8v148")
 
 [node name="Player" parent="." unique_id=862382173 instance=ExtResource("2_5pqkj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12881804, 0.50230306, -1.6200776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12881804, 1.0404325, -1.6200776)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=212108396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0029299, 1.4262182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4651127, 1.4262182)
 use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1195970214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 1.047837, 1.4262182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 1.5100198, 1.4262182)
 use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1180952164]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 2.0520554, 1.4262182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5549452, 2.514238, 1.4262182)
 use_collision = true
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=2024788073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.674578)
+mesh = SubResource("PlaneMesh_7gbb4")
+
+[node name="cosmic_cutlass_effect" type="MeshInstance3D" parent="." unique_id=1269048799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6666918, 7.95348)
+mesh = SubResource("PlaneMesh_vd5fk")

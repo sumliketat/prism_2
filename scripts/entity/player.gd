@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const PITCH_MIN: float = deg_to_rad(-60)
-const PITCH_MAX: float = deg_to_rad(50)
+const PITCH_MAX: float = deg_to_rad(40)
 const MOUSE_SENS: float = 0.002
 @export var normal_cell_color: Color = Color(0.2, 0.2, 0.2, 0.5)
 @export var crossed_cell_color: Color = Color(0.9, 0.2, 0.2, 0.5)
@@ -13,7 +13,10 @@ const MOUSE_SENS: float = 0.002
 @export var pitch: float
 @onready var player_animation = %AnimationPlayer
 
-# Your UI path: CharacterBody3D -> GAPR -> GRID -> C1..C9
+@export var inventory:  PackedInt64Array
+const PLAYER_STATE_LOCATION : String = "res://state/player_state/player_state.txt"
+var config = ConfigFile.new()
+
 @onready var GAPR: Control = %GAPR
 @onready var GRID: GridContainer = %GAPR/%GRID
 
@@ -21,16 +24,21 @@ const MOUSE_SENS: float = 0.002
 @export var crossed_cells: Array[String] = []
 @export var _seen_cells := {} # dictionary as set: {"C1": true, ...}
 
+
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov
 	GAPR.visible = false
+	#config.set_value("Player","player_position", transform)
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		get_tree().quit()
 
 	if attack_active:
-		return # don't rotate camera during attack drag
+		return # dont rotate camera during attack drag
 
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		yaw -= event.relative.x * MOUSE_SENS
@@ -53,9 +61,9 @@ func _process(_delta: float) -> void:
 
 		# unlock cursor for UI hover
 		was_captured_before_attack = (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED)
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		# optional instead:
-		# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 	if attack_active and holding_attack:
 		_track_attack_grid_hover()
@@ -113,6 +121,11 @@ func _physics_process(delta: float) -> void:
 			player_animation.play("Idle", -1, 0.5)
 
 	move_and_slide()
+func _exit_tree() -> void:
+	config.set_value("Player","player_position", transform)
+	config.set_value("Player", "player_inventory", inventory)
+	config.save("res://state/player_state/playersave.cfg")
+
 func _reset_grid_highlight() -> void:
 	for child in GRID.get_children():
 		if child is ColorRect:
@@ -121,3 +134,5 @@ func _reset_grid_highlight() -> void:
 func _highlight_cell(cell: Control) -> void:
 	if cell is ColorRect:
 		(cell as ColorRect).color = crossed_cell_color
+func _load_inventory(inventory : PackedInt64Array) -> void:
+	pass
