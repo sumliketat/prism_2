@@ -14,7 +14,7 @@ const MOUSE_SENS: float = 0.002
 @onready var player_animation = %AnimationPlayer
 
 @export var inventory:  PackedInt64Array
-const PLAYER_STATE_LOCATION : String = "res://state/player_state/player_state.txt"
+const PLAYER_STATE_LOCATION : String = "res://state/player_state/playersave.cfg"
 var config = ConfigFile.new()
 
 @onready var GAPR: Control = %GAPR
@@ -30,7 +30,14 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov
 	GAPR.visible = false
-	#config.set_value("Player","player_position", transform)
+	config.load(PLAYER_STATE_LOCATION)
+	inventory = config.get_value("Player", "player_inventory", [])
+	inventory.clear()
+	inventory.append(0)
+	inventory.append(1)
+	inventory.append(2)
+	inventory.append(3)
+	_load_inventory(inventory)
 
 
 func _input(event: InputEvent) -> void:
@@ -134,5 +141,11 @@ func _reset_grid_highlight() -> void:
 func _highlight_cell(cell: Control) -> void:
 	if cell is ColorRect:
 		(cell as ColorRect).color = crossed_cell_color
-func _load_inventory(inventory : PackedInt64Array) -> void:
-	pass
+func _load_inventory(_inventory : PackedInt64Array) -> void:
+	var references = FileAccess.open("res://assets/weapons/item_references.txt", FileAccess.READ)
+	var contents = references.get_as_text()
+
+	for i in inventory:
+		contents.find(str(i))
+	print("Contents: \n" , contents)
+	print("Inventory: ", inventory)
