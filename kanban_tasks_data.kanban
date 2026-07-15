@@ -107,6 +107,13 @@
 			"description": "make a base character scene, and use it for both players and npcs, (base character will have camera disabled, but player script will re-enable the camera)",
 			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
 			"steps": []
+		},
+		{
+			"uuid": "38095ee4-c0c5-4f19-b763-8a65065b829f",
+			"title": "New task",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
 		}
 	],
 	"layout": {
