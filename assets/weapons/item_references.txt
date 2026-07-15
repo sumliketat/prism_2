@@ -1,4 +1,0 @@
-0=hands
-1=torus_blades
-2=cosmic_cutlass
-3=energetic_chainblade

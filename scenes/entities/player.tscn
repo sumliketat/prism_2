@@ -698,6 +698,7 @@ shape = SubResource("CapsuleShape3D_8v148")
 
 [node name="GAPR" type="Control" parent="." unique_id=337649647]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
 anchors_preset = 15
@@ -880,3 +881,47 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 color = Color(0.31068265, 0.31033567, 9.62615e-08, 1)
+
+[node name="InventoryBackground" type="Panel" parent="." unique_id=1669558771]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.508
+anchor_right = 0.508
+anchor_bottom = 1.0
+offset_left = -306.216
+offset_top = 58.0
+offset_right = 300.784
+theme_type_variation = &"asdas"
+
+[node name="Inventory" type="Control" parent="InventoryBackground" unique_id=1542457282]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="InventoryBackground/Inventory" unique_id=82973061]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+current_tab = 0
+close_with_middle_mouse = false
+tab_count = 2
+tab_0/title = "Weapons"
+tab_1/title = "Armor"
+
+[node name="InventoryGrid" type="GridContainer" parent="InventoryBackground/Inventory" unique_id=2069755123]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.062000003
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.1760025
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+metadata/_edit_use_anchors_ = true

@@ -74,7 +74,7 @@ void fragment() {
 	// A fresnel angle is a mask describing how perpendicular a surface angle is to your viewing angle.
 	// It can be used to create a rim light, as we do here, or cheap SSS effects.
 	float fresnel = sqrt(1.0 - dot(NORMAL, VIEW)) * fresnelIntensity;// * ambientIntensity;
-	RIM = 0.2;
+	RIM = 0.1;
 	METALLIC = 0.0;
 	ROUGHNESS = 0.01 * (1.0 - fresnel);
 	ALBEDO = (vec3(0.01, 0.03, 0.1) * colorIntensity) + fresnel;

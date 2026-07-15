@@ -1,0 +1,26 @@
+[
+	{
+		"id":0,
+		"name":"hands",
+		"scene_path":"hands_scene.tscn",
+		"icon_path":"res://assets/weapons/hands/hands.png",
+	},
+	{
+		"id":1,
+		"name":"Torus Blades",
+		"scene_path":"hands_scene.tscn",
+		"icon_path":"res://assets/weapons/torus_blades/torus_blades.png",
+	},
+	{
+		"id":2,
+		"name":"Cosmic Cutlass",
+		"scene_path":"hands_scene.tscn",
+		"icon_path":"res://assets/weapons/cosmic_cutlass/cosmic_cutlass.png",
+	},
+	{
+		"id":3,
+		"name":"Sawed Chainblade",
+		"scene_path":"hands_scene.tscn",
+		"icon_path":"res://assets/weapons/sawed_chainblade/sawed_chainblade.png",
+	}
+]

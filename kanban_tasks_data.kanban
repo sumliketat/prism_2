@@ -1,0 +1,125 @@
+{
+	"categories": [
+		{
+			"uuid": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"title": "Task",
+			"color": "ff0000"
+		},
+		{
+			"uuid": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"title": "Task_Doing",
+			"color": "edd710"
+		},
+		{
+			"uuid": "dd5c8f88-9e4c-44a4-a830-92c10eb163a4",
+			"title": "Done",
+			"color": "07ff00"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "70ff9cd0-2eb7-422e-8486-e77a12f8af85",
+			"title": "Todo",
+			"tasks": [
+				"bbebd808-71fd-42fa-9756-334812bf2779",
+				"a7b65ebc-e8e3-49f2-a419-48f987f3c29b",
+				"11662be8-11a7-4c09-8e05-c7ee5f6b3943",
+				"ae032d2b-22aa-49a2-a828-afde67867051",
+				"7eca066e-b7cf-4a29-b5c0-7eb7e942bc6a",
+				"f5b0a250-f008-4ee2-9b4e-9f75ac82043d",
+				"0f369aef-237e-4713-be10-61dc0b895e35",
+				"a13ead54-df33-4d28-b7f5-f5b41523a964"
+			]
+		},
+		{
+			"uuid": "08c48d8d-20c5-4a25-9d3b-afdb2d0ddaf7",
+			"title": "Doing",
+			"tasks": [
+				"38bec36f-9973-442e-b07c-60ec5e878e19"
+			]
+		},
+		{
+			"uuid": "822fe56f-46e0-41ea-902e-8913039381a5",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "38bec36f-9973-442e-b07c-60ec5e878e19",
+			"title": "Move save logic to global script",
+			"description": "",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "bbebd808-71fd-42fa-9756-334812bf2779",
+			"title": "adding buttons to inventory grid",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "a7b65ebc-e8e3-49f2-a419-48f987f3c29b",
+			"title": "make inventory grid prettier",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "11662be8-11a7-4c09-8e05-c7ee5f6b3943",
+			"title": "add collision detection for melee",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "ae032d2b-22aa-49a2-a828-afde67867051",
+			"title": "add sound effects",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "7eca066e-b7cf-4a29-b5c0-7eb7e942bc6a",
+			"title": "make working armor tab inventory",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "f5b0a250-f008-4ee2-9b4e-9f75ac82043d",
+			"title": "freeze camera when ui is open",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "0f369aef-237e-4713-be10-61dc0b895e35",
+			"title": "improve player animations",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "a13ead54-df33-4d28-b7f5-f5b41523a964",
+			"title": "dynamic player detections",
+			"description": "make a base character scene, and use it for both players and npcs, (base character will have camera disabled, but player script will re-enable the camera)",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"70ff9cd0-2eb7-422e-8486-e77a12f8af85"
+			],
+			[
+				"08c48d8d-20c5-4a25-9d3b-afdb2d0ddaf7"
+			],
+			[
+				"822fe56f-46e0-41ea-902e-8913039381a5"
+			]
+		]
+	}
+}

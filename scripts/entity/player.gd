@@ -12,13 +12,18 @@ const MOUSE_SENS: float = 0.002
 @export var yaw: float
 @export var pitch: float
 @onready var player_animation = %AnimationPlayer
+const WEAPON_SLOTS: int = 5
+@export var equipped_item : Variant
 
 @export var inventory:  PackedInt64Array
 const PLAYER_STATE_LOCATION : String = "res://state/player_state/playersave.cfg"
+const ITEM_REFERENCES_JSON : String = "res://assets/item_references.json"
 var config = ConfigFile.new()
 
 @onready var GAPR: Control = %GAPR
 @onready var GRID: GridContainer = %GAPR/%GRID
+@onready var INV_BACK: Panel = %InventoryBackground
+@onready var INV_GRID: GridContainer = %InventoryGrid
 
 @export var attack_active := false
 @export var crossed_cells: Array[String] = []
@@ -30,6 +35,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov
 	GAPR.visible = false
+	INV_BACK.visible=false
 	config.load(PLAYER_STATE_LOCATION)
 	inventory = config.get_value("Player", "player_inventory", [])
 	inventory.clear()
@@ -37,13 +43,34 @@ func _ready() -> void:
 	inventory.append(1)
 	inventory.append(2)
 	inventory.append(3)
-	_load_inventory(inventory)
+	var inventory_scenes : Array = _load_inventory(inventory)
+	var NO_OF_SLOTS = inventory_scenes[0].size()
+	print(NO_OF_SLOTS)
+	for i in NO_OF_SLOTS:
+		print("Entered loop")
+		print(inventory_scenes[1][i])
+		var idx_grid_slot : TextureRect = TextureRect.new()
+		var current_image : Image = Image.load_from_file(inventory_scenes[1][i])
+		var current_texture : ImageTexture = ImageTexture.create_from_image(current_image)
+		var max_size := Vector2(200,200)
+		var tex_size := Vector2(current_texture.get_width(),current_texture.get_height())
+		idx_grid_slot.texture = current_texture
+		var tex_scale :float = min(max_size.x/tex_size.x, max_size.y/tex_size.y, 1.0)
+		idx_grid_slot.custom_maximum_size = tex_size * tex_scale
+		INV_GRID.add_child(idx_grid_slot)
+	
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		get_tree().quit()
-
+	if event.is_action_pressed("open_inventory"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+		INV_BACK.visible = true
+	if event.is_action_pressed("close_inventory"):
+		INV_BACK.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if attack_active:
 		return # dont rotate camera during attack drag
 
@@ -59,7 +86,7 @@ var was_captured_before_attack := true
 func _process(_delta: float) -> void:
 	var holding_attack := Input.is_action_pressed("attack_start")
 
-	if holding_attack and not attack_active:
+	if holding_attack and not attack_active and INV_BACK.visible != true:
 		GAPR.visible = true
 		attack_active = true
 		crossed_cells.clear()
@@ -141,11 +168,25 @@ func _reset_grid_highlight() -> void:
 func _highlight_cell(cell: Control) -> void:
 	if cell is ColorRect:
 		(cell as ColorRect).color = crossed_cell_color
-func _load_inventory(_inventory : PackedInt64Array) -> void:
-	var references = FileAccess.open("res://assets/weapons/item_references.txt", FileAccess.READ)
-	var contents = references.get_as_text()
-
+func _load_inventory(_inventory : PackedInt64Array) -> Array:
+	var item_references = get_json_file_as_dict(ITEM_REFERENCES_JSON)
+	var loaded_inventory: Array
+	var icon_inventory : Array
 	for i in inventory:
-		contents.find(str(i))
-	print("Contents: \n" , contents)
-	print("Inventory: ", inventory)
+		for j in item_references:
+			if i == j['id']:
+				loaded_inventory.append(j['scene_path'])
+				icon_inventory.append(j['icon_path'])
+			else:
+				pass
+	return [loaded_inventory,icon_inventory]
+	
+func get_json_file_as_dict(file_path: String) -> Array:
+	var _json = JSON.new()
+	var file_content = FileAccess.get_file_as_string(file_path)
+	var parsed_content = JSON.parse_string(file_content)
+	if parsed_content is Array:
+		return parsed_content
+	else:
+		push_error("Failed to retrieve JSON file: ", file_path)
+		return []
