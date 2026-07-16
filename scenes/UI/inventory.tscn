@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cggtktwju3yg"]
+
+[ext_resource type="Script" uid="uid://cyg8lpmlegqtf" path="res://scripts/UI/inventory.gd" id="1_7c7qg"]
+
+[node name="InventoryPanel" type="Panel" unique_id=5102759]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.508
+anchor_right = 0.508
+anchor_bottom = 1.0
+offset_left = -306.216
+offset_top = 58.0
+offset_right = 300.784
+theme_type_variation = &"asdas"
+script = ExtResource("1_7c7qg")
+
+[node name="Inventory" type="Control" parent="." unique_id=739376787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="Inventory" unique_id=626212893]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+current_tab = 0
+close_with_middle_mouse = false
+tab_count = 2
+tab_0/title = "Weapons"
+tab_1/title = "Armor"
+
+[node name="InventoryGrid" type="GridContainer" parent="Inventory" unique_id=1000656127]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 36.404
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3

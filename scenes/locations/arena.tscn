@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bv7g08j73l7ci" path="res://scenes/entities/player.tscn" id="2_5pqkj"]
 [ext_resource type="Shader" uid="uid://ceowy6jkyuqkb" path="res://material/shaders/test.gdshader" id="3_v75v5"]
 [ext_resource type="Shader" uid="uid://8l3bwjw65ckg" path="res://material/shaders/cosmic_cutlass.gdshader" id="4_fg444"]
+[ext_resource type="PackedScene" uid="uid://dgj0wbu4doo7g" path="res://scenes/entities/base_character.tscn" id="5_n0qn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5pqkj"]
 sky_top_color = Color(0.47383612, 0.5480621, 0.6471147, 1)
@@ -168,3 +169,6 @@ mesh = SubResource("PlaneMesh_7gbb4")
 [node name="cosmic_cutlass_effect" type="MeshInstance3D" parent="." unique_id=1269048799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6666918, 7.95348)
 mesh = SubResource("PlaneMesh_vd5fk")
+
+[node name="BaseHumanoid" parent="." unique_id=1777068853 instance=ExtResource("5_n0qn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82841945, 0.74544775, -1.6465505)

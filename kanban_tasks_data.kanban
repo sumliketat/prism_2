@@ -21,6 +21,7 @@
 			"uuid": "70ff9cd0-2eb7-422e-8486-e77a12f8af85",
 			"title": "Todo",
 			"tasks": [
+				"714f0e40-ef78-45aa-8c0a-7780e8d32a64",
 				"bbebd808-71fd-42fa-9756-334812bf2779",
 				"a7b65ebc-e8e3-49f2-a419-48f987f3c29b",
 				"11662be8-11a7-4c09-8e05-c7ee5f6b3943",
@@ -35,7 +36,12 @@
 			"uuid": "08c48d8d-20c5-4a25-9d3b-afdb2d0ddaf7",
 			"title": "Doing",
 			"tasks": [
-				"38bec36f-9973-442e-b07c-60ec5e878e19"
+				"1e7ec069-7f67-42ec-9447-374e6d1f9efc",
+				"b0b6c0a5-845d-46d2-843a-b532269147d1",
+				"6d8291df-9f8e-4393-b617-6cf9a0aafa63",
+				"e21eff93-1aef-4c89-a499-20f21cf9a747",
+				"547af4c2-d1f2-4bd6-bd97-6db14e98e517",
+				"c728f647-4c18-497c-9afe-b87b09cb10a9"
 			]
 		},
 		{
@@ -45,13 +51,6 @@
 		}
 	],
 	"tasks": [
-		{
-			"uuid": "38bec36f-9973-442e-b07c-60ec5e878e19",
-			"title": "Move save logic to global script",
-			"description": "",
-			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
-			"steps": []
-		},
 		{
 			"uuid": "bbebd808-71fd-42fa-9756-334812bf2779",
 			"title": "adding buttons to inventory grid",
@@ -111,6 +110,55 @@
 		{
 			"uuid": "38095ee4-c0c5-4f19-b763-8a65065b829f",
 			"title": "New task",
+			"description": "",
+			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
+			"steps": []
+		},
+		{
+			"uuid": "1e7ec069-7f67-42ec-9447-374e6d1f9efc",
+			"title": "Health component",
+			"description": "",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "b0b6c0a5-845d-46d2-843a-b532269147d1",
+			"title": "Movement component",
+			"description": "",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "6d8291df-9f8e-4393-b617-6cf9a0aafa63",
+			"title": "Input Component",
+			"description": "",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "e21eff93-1aef-4c89-a499-20f21cf9a747",
+			"title": "Animation Component",
+			"description": "",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "547af4c2-d1f2-4bd6-bd97-6db14e98e517",
+			"title": "Attack Component",
+			"description": "keep seperate from GAPR ui, need to choose between statically loaded attacks, or instantaneous attacks\nwhether the entire attack is sent as one array, or each step is sent 1 by one and acted upon immediately\n",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "c728f647-4c18-497c-9afe-b87b09cb10a9",
+			"title": "Inventory Component",
+			"description": "keep inventory compoennte seperate from the ui, signals for comms btwn ui and component\n",
+			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"steps": []
+		},
+		{
+			"uuid": "714f0e40-ef78-45aa-8c0a-7780e8d32a64",
+			"title": "consider tweens for dynamic armature animations",
 			"description": "",
 			"category": "c3f2d86f-2003-4ebd-8cba-45957a5aea2f",
 			"steps": []
