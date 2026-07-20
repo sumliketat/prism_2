@@ -2,13 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://ccmlhblatyvc0" path="res://assets/base_character/character_5.glb" id="1_81bwg"]
 [ext_resource type="Script" uid="uid://iwvmfbkf20ph" path="res://scripts/entity/base_character.gd" id="1_m3pps"]
+[ext_resource type="Script" uid="uid://4jm3nyqltc28" path="res://scripts/components/HealthComponent.gd" id="3_e72mn"]
+[ext_resource type="Script" uid="uid://hn8lc7tk1n8t" path="res://scripts/components/input_component.gd" id="4_sn7b1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8v148"]
 radius = 0.36865234
 
-[node name="BaseHumanoid" type="CharacterBody3D" unique_id=1777068853 node_paths=PackedStringArray("player_animation")]
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1777068853 node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_m3pps")
-player_animation = NodePath("character_5/AnimationPlayer")
+health_component = NodePath("HealthComponent")
 
 [node name="character_5" parent="." unique_id=1734661077 instance=ExtResource("1_81bwg")]
 
@@ -72,15 +74,21 @@ bones/39/position = Vector3(0.318254, 1.8728535, -7.021643e-06)
 bones/39/rotation = Quaternion(0.06774238, 0.10120822, 0.031129448, 0.99206793)
 bones/40/position = Vector3(0.3160286, 1.5002403, -7.641629e-07)
 
-[node name="CameraBone" type="BoneAttachment3D" parent="character_5/Armature/Skeleton3D" index="1" unique_id=34652062]
-transform = Transform3D(0.99818784, -0.04867291, -0.035384923, 0.035277896, -0.0030570924, 0.9993725, -0.04875056, -0.9988096, -0.0013344735, -0.4628467, 2.2826636, -166.28798)
-bone_name = "mixamorig_Head"
-bone_idx = 27
-
-[node name="CameraController" type="Node3D" parent="character_5/Armature/Skeleton3D/CameraBone" unique_id=274556437]
-
 [node name="EntityHitbox" type="CollisionShape3D" parent="." unique_id=635916002]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93605006, 0)
 shape = SubResource("CapsuleShape3D_8v148")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=441857088]
+script = ExtResource("3_e72mn")
+metadata/_custom_type_script = "uid://4jm3nyqltc28"
+
+[node name="InputComponent" type="Node" parent="." unique_id=1978721315 node_paths=PackedStringArray("base_character")]
+unique_name_in_owner = true
+script = ExtResource("4_sn7b1")
+base_character = NodePath("..")
+metadata/_custom_type_script = "uid://hn8lc7tk1n8t"
+
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]
+[connection signal="health_keybind_pressed" from="InputComponent" to="." method="_on_heal_keybind_press"]
 
 [editable path="character_5"]

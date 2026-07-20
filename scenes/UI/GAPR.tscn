@@ -1,24 +1,23 @@
 [gd_scene format=3 uid="uid://cx1spl64uuglk"]
 
-[ext_resource type="Script" uid="uid://di2rhh3sgcca2" path="res://scripts/UI/gapr.gd" id="1_k4r57"]
-
 [node name="GAPR" type="Control" unique_id=1604452153]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 500.0
-offset_top = 225.0
-offset_right = -351.9995
-offset_bottom = -123.0
+offset_left = -398.0
+offset_top = 67.0
+offset_right = 374.18054
+offset_bottom = -203.22571
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.665, 0.665)
+pivot_offset = Vector2(386.56787, 404.47742)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_k4r57")
 
 [node name="GRID" type="GridContainer" parent="." unique_id=1932756072]
 unique_name_in_owner = true

@@ -36,9 +36,7 @@
 			"uuid": "08c48d8d-20c5-4a25-9d3b-afdb2d0ddaf7",
 			"title": "Doing",
 			"tasks": [
-				"1e7ec069-7f67-42ec-9447-374e6d1f9efc",
 				"b0b6c0a5-845d-46d2-843a-b532269147d1",
-				"6d8291df-9f8e-4393-b617-6cf9a0aafa63",
 				"e21eff93-1aef-4c89-a499-20f21cf9a747",
 				"547af4c2-d1f2-4bd6-bd97-6db14e98e517",
 				"c728f647-4c18-497c-9afe-b87b09cb10a9"
@@ -47,7 +45,10 @@
 		{
 			"uuid": "822fe56f-46e0-41ea-902e-8913039381a5",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"1e7ec069-7f67-42ec-9447-374e6d1f9efc",
+				"6d8291df-9f8e-4393-b617-6cf9a0aafa63"
+			]
 		}
 	],
 	"tasks": [
@@ -118,7 +119,7 @@
 			"uuid": "1e7ec069-7f67-42ec-9447-374e6d1f9efc",
 			"title": "Health component",
 			"description": "",
-			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"category": "dd5c8f88-9e4c-44a4-a830-92c10eb163a4",
 			"steps": []
 		},
 		{
@@ -132,7 +133,7 @@
 			"uuid": "6d8291df-9f8e-4393-b617-6cf9a0aafa63",
 			"title": "Input Component",
 			"description": "",
-			"category": "ff7d826f-cfd1-44bc-865a-d1b5a9d18b93",
+			"category": "dd5c8f88-9e4c-44a4-a830-92c10eb163a4",
 			"steps": []
 		},
 		{

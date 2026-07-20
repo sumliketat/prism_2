@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://cggtktwju3yg"]
 
-[ext_resource type="Script" uid="uid://cyg8lpmlegqtf" path="res://scripts/UI/inventory.gd" id="1_7c7qg"]
-
 [node name="InventoryPanel" type="Panel" unique_id=5102759]
 unique_name_in_owner = true
 anchors_preset = -1
@@ -11,8 +9,6 @@ anchor_bottom = 1.0
 offset_left = -306.216
 offset_top = 58.0
 offset_right = 300.784
-theme_type_variation = &"asdas"
-script = ExtResource("1_7c7qg")
 
 [node name="Inventory" type="Control" parent="." unique_id=739376787]
 layout_mode = 1

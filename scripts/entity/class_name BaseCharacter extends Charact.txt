@@ -1,39 +1,56 @@
 class_name BaseCharacter extends CharacterBody3D
 
-const SPEED = 4.0
-const JUMP_VELOCITY = 6.5
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
 const PITCH_MIN: float = deg_to_rad(-60)
 const PITCH_MAX: float = deg_to_rad(40)
 const MOUSE_SENS: float = 0.002
-@export var heal_amount : float = 10
+
 @export var player_camera : Camera3D
 @export_range(0,120) var player_fov: int = 75
 @export var yaw: float
 @export var pitch: float
-@onready var player_animation : AnimationPlayer = $character_5/AnimationPlayer
+@export var player_animation : AnimationPlayer
+const WEAPON_SLOTS: int = 5
+@export var equipped_item : Variant
+
 @export var inventory:  PackedInt64Array
 const PLAYER_STATE_LOCATION : String = "res://state/player_state/playersave.cfg"
 const ITEM_REFERENCES_JSON : String = "res://assets/item_references.json"
 var config = ConfigFile.new()
-#COMPONENTS
-@export var health_component : HealthComponent
-@onready var input_component : InputComponent = %InputComponent
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov
+	
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc"):
+		get_tree().quit()
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		yaw -= event.relative.x * MOUSE_SENS
+		pitch -= event.relative.y * MOUSE_SENS
+		pitch = clamp(pitch, PITCH_MIN, PITCH_MAX)
+		rotation.y = yaw
+		player_camera.rotation.x = pitch
+		player_camera.rotation.z = 0.0
 var was_captured_before_attack := true
+
 func _process(_delta: float) -> void:
 	#var holding_attack := Input.is_action_pressed("attack_start")
 	pass
+
+	
 func _physics_process(delta: float) -> void:
-	input_component.update()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if input_component.jump_pressed and is_on_floor():
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	var direction := (transform.basis * Vector3(input_component.move_dir.x, 0, input_component.move_dir.y)).normalized()
+
+	var input_dir := Input.get_vector("move_right", "move_left", "move_back", "move_forw")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -42,20 +59,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	var is_animating := input_dir.length() > 0.0
+	if is_animating:
+		if player_animation.current_animation != "Walk":
+			player_animation.play("Walk", -1, 3.0)
+	else:
+		if player_animation.current_animation != "Idle":
+			player_animation.play("Idle", -1, 0.5)
+
 	move_and_slide()
 func _exit_tree() -> void:
 	config.set_value("Player","player_position", transform)
 	config.set_value("Player", "player_inventory", inventory)
 	config.save("res://state/player_state/playersave.cfg")
-	
-func _on_health_changed(new_health: float, damage_flag: bool) -> void:
-	if damage_flag :
-		print(str(new_health) + " Damaged")
-	else:
-		print(str(new_health) + " Healed")
-
-func _on_heal_keybind_press(heal_type: InputComponent.Heal_Type) -> void:
-	if heal_type == 1:
-		health_component.heal(heal_amount)
-	else:
-		health_component.hurt(heal_amount)
