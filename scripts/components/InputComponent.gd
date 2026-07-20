@@ -4,7 +4,7 @@ class_name InputComponent extends Node
 
 
 signal health_keybind_pressed(heal_type : Heal_Type)
-enum Heal_Type {HURT, HEAL} 
+enum Heal_Type {HURT  = 1, HEAL = 2, RESPAWN = 3} 
 const PITCH_MIN: float = deg_to_rad(-60)
 const PITCH_MAX: float = deg_to_rad(40)
 const MOUSE_SENS: float = 0.002
@@ -25,6 +25,8 @@ func _input(event: InputEvent) -> void:
 		health_keybind_pressed.emit(Heal_Type.HURT)
 	if event.is_action_pressed("heal(debug)"):
 		health_keybind_pressed.emit(Heal_Type.HEAL)
+	if event.is_action_pressed("respawn"):
+		health_keybind_pressed.emit(Heal_Type.RESPAWN)
 
 func  update_camera(event : InputEvent,_character: BaseCharacter) -> void:
 	yaw -= event.relative.x * MOUSE_SENS

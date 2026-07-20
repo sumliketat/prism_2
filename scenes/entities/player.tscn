@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cmbr34l4hjab7" path="res://scripts/entity/player.gd" id="1_08t41"]
 [ext_resource type="PackedScene" uid="uid://dgj0wbu4doo7g" path="res://scenes/entities/base_character.tscn" id="1_ucweq"]
+[ext_resource type="LabelSettings" uid="uid://tsohbrt24fcp" path="res://assets/UI/died_text.tres" id="3_1ie0h"]
+[ext_resource type="LabelSettings" uid="uid://c4s7xo4bjhfvx" path="res://assets/UI/health_text.tres" id="3_42nxq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4qa6"]
 bg_color = Color(0.019607844, 0.019607844, 0.019607844, 0.35686275)
@@ -29,17 +31,21 @@ unique_name_in_owner = true
 
 [node name="PlayerUI" type="Control" parent="." unique_id=1799837664]
 layout_mode = 3
-anchor_right = 0.30200002
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = 314.0
-offset_right = 0.09597778
-offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UIBackground" type="ColorRect" parent="PlayerUI" unique_id=1597344870]
-layout_mode = 0
-offset_right = 276.0
-offset_bottom = 206.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.273
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 379.0
+offset_right = 0.5039978
+offset_bottom = -63.0
 color = Color(0.14117648, 0.14117648, 0.14117648, 0.5176471)
 
 [node name="PlayerHealth" type="ProgressBar" parent="PlayerUI/UIBackground" unique_id=1250694105]
@@ -72,8 +78,57 @@ offset_right = 58.0
 offset_bottom = -13.0
 grow_vertical = 2
 text = "100"
+label_settings = ExtResource("3_42nxq")
 
+[node name="DashContainer" type="GridContainer" parent="PlayerUI/UIBackground" unique_id=635666681]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.64500004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 4.1299896
+offset_right = -8.0
+offset_bottom = -10.0
+columns = 3
+
+[node name="DashCount1" type="ColorRect" parent="PlayerUI/UIBackground/DashContainer" unique_id=261745364]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+color = Color(0, 0.627451, 0.627451, 1)
+
+[node name="DashCount2" type="ColorRect" parent="PlayerUI/UIBackground/DashContainer" unique_id=740337612]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+color = Color(0, 0.627451, 0.627451, 1)
+
+[node name="DashCount3" type="ColorRect" parent="PlayerUI/UIBackground/DashContainer" unique_id=1093576344]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+color = Color(0, 0.627451, 0.627451, 1)
+
+[node name="DeathText" type="Label" parent="PlayerUI" unique_id=220156517]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -36.0
+offset_right = 130.0
+offset_bottom = 33.0
+text = "YOU  DIED"
+label_settings = ExtResource("3_1ie0h")
+uppercase = true
+
+[connection signal="has_died" from="BaseCharacter/HealthComponent" to="." method="_on_death"]
 [connection signal="health_changed" from="BaseCharacter/HealthComponent" to="." method="_on_health_changed"]
+[connection signal="dash_consumed" from="BaseCharacter/MovementComponent" to="." method="_on_dash_consumed"]
 
 [editable path="BaseCharacter"]
 [editable path="BaseCharacter/character_5"]

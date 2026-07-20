@@ -35,9 +35,10 @@ func _on_health_changed(new_health: float, damage_flag: bool) -> void:
 func _on_heal_keybind_press(heal_type: InputComponent.Heal_Type) -> void:
 	if heal_type == 1:
 		health_component.heal(heal_amount)
-	else:
+	if heal_type == 2:
 		health_component.hurt(heal_amount)
-
+	if heal_type == 3:
+		health_component.respawn()
 
 func _on_death(has_died: bool) -> void:
 	print(has_died)
