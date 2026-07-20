@@ -1,15 +1,7 @@
 class_name BaseCharacter extends CharacterBody3D
-
-const SPEED = 4.0
-const JUMP_VELOCITY = 6.5
-const PITCH_MIN: float = deg_to_rad(-60)
-const PITCH_MAX: float = deg_to_rad(40)
-const MOUSE_SENS: float = 0.002
 @export var heal_amount : float = 10
 @export var player_camera : Camera3D
 @export_range(0,120) var player_fov: int = 75
-@export var yaw: float
-@export var pitch: float
 @onready var player_animation : AnimationPlayer = $character_5/AnimationPlayer
 @export var inventory:  PackedInt64Array
 const PLAYER_STATE_LOCATION : String = "res://state/player_state/playersave.cfg"
@@ -17,32 +9,18 @@ const ITEM_REFERENCES_JSON : String = "res://assets/item_references.json"
 var config = ConfigFile.new()
 #COMPONENTS
 @export var health_component : HealthComponent
-@onready var input_component : InputComponent = %InputComponent
-
+@export var input_component : InputComponent
+@export var movement_component : MovementComponent
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov
 var was_captured_before_attack := true
-func _process(_delta: float) -> void:
-	#var holding_attack := Input.is_action_pressed("attack_start")
-	pass
+
+#func _process(delta: float) -> void:
+	##var holding_attack := Input.is_action_pressed("attack_start")
+	#pass
 func _physics_process(delta: float) -> void:
-	input_component.update()
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	if input_component.jump_pressed and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	var direction := (transform.basis * Vector3(input_component.move_dir.x, 0, input_component.move_dir.y)).normalized()
-
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+	movement_component.update(self, delta)
 func _exit_tree() -> void:
 	config.set_value("Player","player_position", transform)
 	config.set_value("Player", "player_inventory", inventory)
@@ -59,3 +37,7 @@ func _on_heal_keybind_press(heal_type: InputComponent.Heal_Type) -> void:
 		health_component.heal(heal_amount)
 	else:
 		health_component.hurt(heal_amount)
+
+
+func _on_death(has_died: bool) -> void:
+	print(has_died)

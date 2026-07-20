@@ -1,21 +1,21 @@
 class_name InputComponent extends Node
 
+#Notes: Future functionality would be adding the ability to change keybinds on runtime and saving keybinds to save data
+
+
 signal health_keybind_pressed(heal_type : Heal_Type)
 enum Heal_Type {HURT, HEAL} 
-var move_dir : Vector2 = Vector2.ZERO :
-	get():
-		return move_dir
-var jump_pressed : bool = false
+const PITCH_MIN: float = deg_to_rad(-60)
+const PITCH_MAX: float = deg_to_rad(40)
+const MOUSE_SENS: float = 0.002
+@export var yaw: float
+@export var pitch: float
 @export var base_character: BaseCharacter
-#signal change_health(value : float, damage_flag: bool)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-func update() -> void:
-	move_dir = Input.get_vector("move_right","move_left","move_back","move_forw")
-	jump_pressed = Input.is_action_pressed("jump")
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		get_tree().quit()
@@ -27,9 +27,9 @@ func _input(event: InputEvent) -> void:
 		health_keybind_pressed.emit(Heal_Type.HEAL)
 
 func  update_camera(event : InputEvent,_character: BaseCharacter) -> void:
-	_character.yaw -= event.relative.x * _character.MOUSE_SENS
-	_character.pitch -= event.relative.y * _character.MOUSE_SENS
-	_character.pitch = clamp(_character.pitch, _character.PITCH_MIN, _character.PITCH_MAX)
-	_character.rotation.y = _character.yaw
-	_character.player_camera.rotation.x = _character.pitch
+	yaw -= event.relative.x * MOUSE_SENS
+	pitch -= event.relative.y * MOUSE_SENS
+	pitch = clamp(pitch,PITCH_MIN,PITCH_MAX)
+	_character.rotation.y = yaw
+	_character.player_camera.rotation.x = pitch
 	_character.player_camera.rotation.z = 0.0

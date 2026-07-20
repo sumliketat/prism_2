@@ -3,14 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://ccmlhblatyvc0" path="res://assets/base_character/character_5.glb" id="1_81bwg"]
 [ext_resource type="Script" uid="uid://iwvmfbkf20ph" path="res://scripts/entity/base_character.gd" id="1_m3pps"]
 [ext_resource type="Script" uid="uid://4jm3nyqltc28" path="res://scripts/components/HealthComponent.gd" id="3_e72mn"]
-[ext_resource type="Script" uid="uid://hn8lc7tk1n8t" path="res://scripts/components/input_component.gd" id="4_sn7b1"]
+[ext_resource type="Script" uid="uid://hn8lc7tk1n8t" path="res://scripts/components/InputComponent.gd" id="4_sn7b1"]
+[ext_resource type="Script" uid="uid://cv41wu16oc2r4" path="res://scripts/components/MovementComponent.gd" id="5_hxwsd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8v148"]
 radius = 0.36865234
 
-[node name="BaseCharacter" type="CharacterBody3D" unique_id=1777068853 node_paths=PackedStringArray("health_component")]
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1777068853 node_paths=PackedStringArray("health_component", "input_component", "movement_component")]
 script = ExtResource("1_m3pps")
 health_component = NodePath("HealthComponent")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
 
 [node name="character_5" parent="." unique_id=1734661077 instance=ExtResource("1_81bwg")]
 
@@ -88,6 +91,11 @@ script = ExtResource("4_sn7b1")
 base_character = NodePath("..")
 metadata/_custom_type_script = "uid://hn8lc7tk1n8t"
 
+[node name="MovementComponent" type="Node" parent="." unique_id=1316936905]
+script = ExtResource("5_hxwsd")
+metadata/_custom_type_script = "uid://cv41wu16oc2r4"
+
+[connection signal="has_died" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]
 [connection signal="health_keybind_pressed" from="InputComponent" to="." method="_on_heal_keybind_press"]
 
