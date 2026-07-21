@@ -91,12 +91,18 @@ script = ExtResource("4_sn7b1")
 base_character = NodePath("..")
 metadata/_custom_type_script = "uid://hn8lc7tk1n8t"
 
-[node name="MovementComponent" type="Node" parent="." unique_id=1316936905]
+[node name="MovementComponent" type="Node" parent="." unique_id=1316936905 node_paths=PackedStringArray("dash_replenish_timer")]
 script = ExtResource("5_hxwsd")
+dash_replenish_timer = NodePath("../DashReplenish")
 metadata/_custom_type_script = "uid://cv41wu16oc2r4"
+
+[node name="DashReplenish" type="Timer" parent="." unique_id=285119775]
+wait_time = 1.5
+one_shot = true
 
 [connection signal="has_died" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]
 [connection signal="health_keybind_pressed" from="InputComponent" to="." method="_on_heal_keybind_press"]
+[connection signal="timeout" from="DashReplenish" to="MovementComponent" method="_on_dash_replenish"]
 
 [editable path="character_5"]

@@ -11,6 +11,7 @@ var config = ConfigFile.new()
 @export var health_component : HealthComponent
 @export var input_component : InputComponent
 @export var movement_component : MovementComponent
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_camera.fov = player_fov

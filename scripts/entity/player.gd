@@ -9,6 +9,8 @@ extends Node3D
 @onready var dash_count_1: ColorRect = %DashCount1
 @onready var dash_count_2: ColorRect = %DashCount2
 @onready var dash_count_3: ColorRect = %DashCount3
+const COLOR_DASH_USED : Color = Color(0.094, 0.094, 0.094, 0.922)
+const COLOR_DASH_AVAIL : Color = Color(0.0, 0.627, 0.627, 1.0)
 var dash_array : Array[ColorRect]
 func _ready() -> void:
 	player_health.set_value_no_signal(100)
@@ -30,5 +32,13 @@ func _on_death(has_died: bool) -> void:
 		death_text.visible = true
 
 
-func _on_dash_consumed(dash_count: int) -> void:
-	dash_array[dash_count-1].set_color(Color(0.08, 0.08, 0.08, 0.9))
+func _on_dash_changed(new_dash_count: int) -> void:
+	var i : int = 0
+	while i < len(dash_array):
+		if i < new_dash_count:
+			dash_array[i].set_color(COLOR_DASH_AVAIL)
+		else:
+			dash_array[i].set_color(COLOR_DASH_USED)
+		i += 1
+	
+ 

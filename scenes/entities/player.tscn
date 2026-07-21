@@ -128,6 +128,7 @@ uppercase = true
 
 [connection signal="has_died" from="BaseCharacter/HealthComponent" to="." method="_on_death"]
 [connection signal="health_changed" from="BaseCharacter/HealthComponent" to="." method="_on_health_changed"]
+[connection signal="dash_changed" from="BaseCharacter/MovementComponent" to="." method="_on_dash_changed"]
 [connection signal="dash_consumed" from="BaseCharacter/MovementComponent" to="." method="_on_dash_consumed"]
 
 [editable path="BaseCharacter"]
